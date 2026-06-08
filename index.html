@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization -->
+    <title>3D by kero - Immersive Interactive 3D Photo Gallery</title>
+    <meta name="description" content="Explore beautiful digital art in a fully interactive, responsive 3D space. Spin, zoom, and transition between Carousel, Helix, and Grid views. Made with Three.js.">
+    <meta name="keywords" content="Three.js, 3D gallery, digital art, portfolio, interactive website, WebGL, OrbitControls">
+    <meta name="author" content="kero">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="3D by kero - Immersive 3D Photo Gallery">
+    <meta property="og:description" content="Experience a premium, interactive 3D portfolio featuring stunning visual landscapes and smooth transitions.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loader Overlay -->
+    <div class="loader-overlay" id="loader">
+        <div class="spinner"></div>
+        <p class="loader-text">Initializing 3D Space...</p>
+    </div>
+
+    <!-- Three.js Canvas -->
+    <canvas id="webgl" aria-label="3D Interactive Art Gallery Canvas"></canvas>
+
+    <!-- UI Overlay Wrapper -->
+    <div class="ui-container">
+        
+        <!-- Header / Navigation -->
+        <header class="glass-panel" id="main-header">
+            <h1 class="logo-text">3D <span class="accent-text">by kero</span></h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link active" id="nav-gallery">Gallery</a></li>
+                    <li><a href="#" class="nav-link" id="nav-about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- View Controls (Bottom-Left) -->
+        <section class="controls-container glass-panel" id="view-controls" aria-label="Gallery Layout Controls">
+            <h2 class="controls-title">Change Layout</h2>
+            <div class="btn-group">
+                <button class="btn btn-layout active" id="btn-carousel" data-layout="carousel">
+                    <span class="icon">&#9678;</span> Carousel
+                </button>
+                <button class="btn btn-layout" id="btn-helix" data-layout="helix">
+                    <span class="icon">&#9783;</span> Helix
+                </button>
+                <button class="btn btn-layout" id="btn-grid" data-layout="grid">
+                    <span class="icon">&#8862;</span> Grid
+                </button>
+            </div>
+        </section>
+
+        <!-- Dynamic User Tips (Bottom Center) -->
+        <div class="tips-panel glass-panel" id="interaction-tips">
+            <p class="tips-text">
+                <span class="tip-part"><span class="mouse-icon">&#128434;</span> Drag to rotate</span>
+                <span class="tip-divider">|</span>
+                <span class="tip-part"><span class="zoom-icon">&#128269;</span> Scroll to zoom</span>
+                <span class="tip-divider">|</span>
+                <span class="tip-part"><span class="click-icon">&#128070;</span> Click image to inspect</span>
+            </p>
+        </div>
+
+        <!-- Sidebar / Details Panel (Slides in from Right) -->
+        <aside class="detail-sidebar glass-panel" id="detail-panel" aria-hidden="true">
+            <button class="btn-close" id="btn-close-detail" aria-label="Close details view">&times;</button>
+            <div class="sidebar-content">
+                <span class="category-tag" id="detail-category">Digital Art</span>
+                <h3 class="detail-title" id="detail-title">Cyberpunk Cityscape</h3>
+                <hr class="divider">
+                <p class="detail-description" id="detail-desc">
+                    Loading description...
+                </p>
+                <div class="metadata-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">Artist</span>
+                        <span class="meta-value">kero</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Format</span>
+                        <span class="meta-value">3D Plane</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Resolution</span>
+                        <span class="meta-value">WebGL Render</span>
+                    </div>
+                </div>
+                <button class="btn btn-action" id="btn-action-view">Explore Coordinates</button>
+            </div>
+        </aside>
+
+        <!-- About Modal (Hidden by Default) -->
+        <div class="modal-overlay" id="about-modal" aria-hidden="true">
+            <div class="modal-content glass-panel">
+                <button class="btn-close" id="btn-close-about" aria-label="Close about dialog">&times;</button>
+                <h2>About the Exhibition</h2>
+                <p>Welcome to <strong>3D by kero</strong>, a digital gallery showcasing high-resolution artistic scenes generated through generative AI and rendered using standard WebGL technologies.</p>
+                <p>By arranging image planes in mathematical coordinates (cylindrical, helical, and cartesian), this workspace combines classic 2D art with three-dimensional space.</p>
+                <p><strong>Technologies used:</strong></p>
+                <ul>
+                    <li>Three.js for WebGL 3D rendering and shading</li>
+                    <li>GSAP (GreenSock) for high-performance camera animations</li>
+                    <li>OrbitControls for intuitive touch/mouse orbital physics</li>
+                    <li>Vanilla HTML5, CSS3 Custom Properties & flexbox grid layouts</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CDNs for Libraries -->
+    <!-- Three.js (Core) -->
+    <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+    <!-- OrbitControls -->
+    <script src="https://unpkg.com/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- GSAP for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    
+    <!-- Main Application Logic -->
+    <script src="main.js"></script>
+</body>
+</html>
